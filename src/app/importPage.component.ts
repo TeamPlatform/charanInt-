@@ -2,9 +2,10 @@ import { Component,OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Http,Response } from '@angular/http';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+
 import { URLSearchParams } from '@angular/http';
+
 
 import{ImportServiceComponent} from './importPage.service';
 import {ProjectDetailServiceComponent} from './pDetail.service';
@@ -41,6 +42,8 @@ featureSelected:string;
 typeSelected:string;
 prioritySelected:string;
 timeGiven:string;
+gitMessage:any;
+npmMessage:any;
    constructor(private importService:ImportServiceComponent,private router: Router,
      private data:ProjectDetailServiceComponent,private http:Http){
   //alert("jjjjjjjjjjjj")
@@ -74,6 +77,34 @@ console.log(this.types)
 
 
       }
+
+
+gitClone(gitUrl){
+//   alert(gitUrl)
+this.gitMessage="Please Wait Git Is Cloning"
+   let urlSearchParams = new URLSearchParams();
+urlSearchParams.append('gitClone',gitUrl);
+// alert(gitClone)
+  return this.http.post('http://localhost:2111/gitClone',urlSearchParams)
+      .subscribe(data => {this.gitMessage=data;
+      console.log(data);
+    });
+}
+
+npmInstall(npmPath){
+ var npmMessage="Please Wait NPM Is Installing"
+   let urlSearchParams = new URLSearchParams();
+urlSearchParams.append('npmPath',npmPath);
+// alert(gitClone)
+  return this.http.post('http://localhost:2111/npmInstall',urlSearchParams)
+      .subscribe(data => {this.npmMessage=data;
+      console.log(data);
+    }); 
+
+
+}
+
+      
       getfolder(e) {
    console.log(typeof(e))
 }

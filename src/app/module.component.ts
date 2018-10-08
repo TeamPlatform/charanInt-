@@ -1,8 +1,8 @@
 import { Component,OnInit} from '@angular/core';
 import { Http,Response } from '@angular/http';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+
 import { URLSearchParams } from '@angular/http';
 
 import{ModuleServiceComponent} from './modulePage.service';
@@ -80,7 +80,7 @@ console.log(this.incModuleId+"mm")
 urlSearchParams.append('moduleName', this.moduleName);
 urlSearchParams.append('moduleId', this.incModuleId);
 
-    return this.http.post('/postModuleName', urlSearchParams)
+    return this.http.post('/postModuleName'+ urlSearchParams,{})
       .subscribe(data => {
       console.log(data);
     });

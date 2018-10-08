@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { Http,Response } from '@angular/http';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+
 
 import { URLSearchParams } from '@angular/http';
 
@@ -22,13 +22,20 @@ export class ProjectDetailServiceComponent {
   .map((response: Response) => <Post[]>response.json());
 
   }
+
+  
      moId(clickModule):Observable<Post[]>{
    //alert("ll00")
    return this.http.get("/getMoId"+clickModule)
   .map((response:Response)=><Post[]>response.json());
 
   }
+getProjectDir(searchDir):Observable<Post[]>{
+   //alert(searchDir)
+   return this.http.get("/searchDir"+searchDir)
+  .map((response:Response)=><Post[]>response.json());
 
+  }
 
     childModuleDetails(index): Observable<Post[]> {
 
@@ -79,4 +86,7 @@ export class ProjectDetailServiceComponent {
           .map((response: Response) => <Post[]>response.json());
 
           }
+
+
+          
 }

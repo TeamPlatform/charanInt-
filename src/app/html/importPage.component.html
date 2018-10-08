@@ -1,13 +1,25 @@
 <div style="margin-left: 500px;margin-top: 70px;font-size: 20px;">
     <span>
-            ModuleName:<select style="height: 25px;width: 150px;" [(ngModel)]="moduleSelected">
-                    <option *ngFor="let module of modules">{{module.moduleName}}</option>
+            Framework:<select style="height: 25px;width: 150px;" [(ngModel)]="moduleSelected">
+                    <option ></option>
+                    <option >Cypress</option>
                  </select>
     </span>
   
     <br>
     <br>
+    GitUrl:<input type="text" [(ngModel)]="gitUrl">
     <br>
+    <br>
+   
+    <button (click)="gitClone(gitUrl)">GitClone</button>
+    <br><br>
+  Mention Path To Install Node Modules:<input type="text" [(ngModel)]="npmPath">
+  <button (click)="npmInstall(npmPath)">Install</button>
+<br>
+<br>
+  {{gitMessage}}
+   <!--  <br>
    <span style="margin-left: -4px">
         FeatureName:<select style="height: 25px;width: 150px;margin-left: 1px" [(ngModel)]="featureSelected">
                 <option *ngFor="let feature of features">{{feature.featureName}}</option>
@@ -40,7 +52,7 @@
 
         <br>
       ImportScript:<input type="file" (change)="getfolder($event)">
-</span>
+</span> -->
  <br>
  <span>
     <button style="background-color: green;height: 35px;width: 80px;margin-left: 45px" (click)="saveImportData()">Save</button>
